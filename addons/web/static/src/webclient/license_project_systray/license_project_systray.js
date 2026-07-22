@@ -41,7 +41,7 @@ export class LicenseProjectSystray extends Component {
     }
 
     get licenseButtonLabel() {
-        return LICENSE_TITLE;
+        return LICENSE_TITLE.replace("\n", " ");
     }
 
     get projectButtonLabel() {

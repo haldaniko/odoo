@@ -1,14 +1,19 @@
 .o_main_navbar {
     .o_license_project_systray {
         height: 100%;
+        min-width: 0;
     }
 
     .o_license_project_systray_button {
         color: inherit;
-        line-height: 1.15;
+        display: block;
+        overflow: hidden;
+        min-width: 0;
+        max-width: 240px;
+        line-height: var(--o-navbar-height);
         text-decoration: none;
-        white-space: pre-line;
-        max-width: 260px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         text-align: center;
     }
 }
