@@ -1,3 +1,5 @@
+name: odoo-iot
+
 services:
   db:
     image: postgres:15
@@ -39,4 +41,6 @@ services:
 
 volumes:
   odoo-prod-db-data:
+    name: odoo-iot-db-data
   odoo-prod-web-data:
+    name: odoo-iot-web-data
