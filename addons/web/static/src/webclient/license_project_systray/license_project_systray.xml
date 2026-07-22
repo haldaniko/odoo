@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="web.LicenseProjectSystray" owl="1">
+        <div class="o_license_project_systray d-flex align-items-stretch">
+            <button
+                type="button"
+                class="btn btn-link o_license_project_systray_button"
+                t-on-click="openLicenseDialog"
+                t-esc="licenseButtonLabel"
+            />
+            <button
+                type="button"
+                class="btn btn-link o_license_project_systray_button"
+                t-on-click="openProjectDialog"
+                t-esc="projectButtonLabel"
+            />
+        </div>
+    </t>
+
+    <t t-name="web.LicenseDetailsDialog" owl="1">
+        <Dialog size="'md'" title="props.title">
+            <table class="table table-sm table-bordered mb-0 o_license_project_table">
+                <tbody>
+                    <tr t-foreach="props.rows" t-as="row" t-key="row[0]">
+                        <th scope="row" t-esc="row[0]" />
+                        <td t-esc="row[1]" />
+                    </tr>
+                </tbody>
+            </table>
+            <t t-set-slot="footer" owl="1">
+                <button class="btn btn-primary" t-on-click="props.close">OK</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <t t-name="web.ProjectImageDialog" owl="1">
+        <Dialog size="'lg'" title="props.title">
+            <div class="text-center">
+                <img
+                    t-att-src="props.imageSrc"
+                    t-att-alt="props.title"
+                    class="img-fluid o_license_project_image"
+                />
+            </div>
+            <t t-set-slot="footer" owl="1">
+                <button class="btn btn-primary" t-on-click="props.close">OK</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>
