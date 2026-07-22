@@ -1,0 +1,31 @@
+.o_main_navbar {
+    .o_license_project_systray {
+        height: 100%;
+    }
+
+    .o_license_project_systray_button {
+        color: inherit;
+        line-height: 1.15;
+        text-decoration: none;
+        white-space: pre-line;
+        max-width: 260px;
+        text-align: center;
+    }
+}
+
+.o_license_project_table {
+    th {
+        width: 38%;
+        background-color: $o-gray-100;
+        white-space: nowrap;
+    }
+
+    td {
+        word-break: break-word;
+    }
+}
+
+.o_license_project_image {
+    max-height: 70vh;
+    object-fit: contain;
+}

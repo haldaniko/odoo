@@ -1,3 +1,5 @@
+name: odoo-hashtaghub
+
 services:
   db:
     image: postgres:15
@@ -28,8 +30,8 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
       ODOO_RC: /etc/odoo/odoo.prod.conf
     ports:
-      - "${ODOO_HTTP_PORT:-8069}:8069"
-      - "${ODOO_LONGPOLLING_PORT:-8072}:8072"
+      - "${ODOO_HTTP_PORT:-8269}:8069"
+      - "${ODOO_LONGPOLLING_PORT:-8272}:8072"
     volumes:
       - odoo-prod-web-data:/var/lib/odoo
       - ./custom-addons:/mnt/extra-addons:ro
@@ -39,4 +41,6 @@ services:
 
 volumes:
   odoo-prod-db-data:
+    name: odoo-hashtaghub-db-data
   odoo-prod-web-data:
+    name: odoo-hashtaghub-web-data
