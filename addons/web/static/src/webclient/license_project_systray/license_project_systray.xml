@@ -6,12 +6,14 @@
                 type="button"
                 class="btn btn-link o_license_project_systray_button"
                 t-on-click="openLicenseDialog"
+                t-att-title="licenseButtonLabel"
                 t-esc="licenseButtonLabel"
             />
             <button
                 type="button"
                 class="btn btn-link o_license_project_systray_button"
                 t-on-click="openProjectDialog"
+                t-att-title="projectButtonLabel"
                 t-esc="projectButtonLabel"
             />
         </div>
