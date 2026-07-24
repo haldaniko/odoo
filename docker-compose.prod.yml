@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-odoo}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
     volumes:
-      - odoo-prod-db-data:/var/lib/postgresql/data
+      - ${ODOO_DATA_ROOT:-/home/odoo-data}/odoo-plameli/postgresql:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-odoo} -d postgres"]
       interval: 10s
@@ -33,14 +33,9 @@ services:
       - "${ODOO_HTTP_PORT:-8075}:8069"
       - "${ODOO_LONGPOLLING_PORT:-8172}:8072"
     volumes:
-      - odoo-prod-web-data:/var/lib/odoo
+      - ${ODOO_DATA_ROOT:-/home/odoo-data}/odoo-plameli/odoo:/var/lib/odoo
       - ./custom-addons:/mnt/extra-addons:ro
       - ./docker/odoo.prod.conf:/etc/odoo/odoo.prod.conf:ro
     command: ["odoo"]
     restart: unless-stopped
 
-volumes:
-  odoo-prod-db-data:
-    name: odoo-plameli-db-data
-  odoo-prod-web-data:
-    name: odoo-plameli-web-data
