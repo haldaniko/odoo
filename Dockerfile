@@ -49,9 +49,9 @@ WORKDIR /opt/odoo
 
 COPY requirements.txt ./
 COPY docker/build-constraints.txt /tmp/build-constraints.txt
-RUN pip install "pip<24.1" "setuptools<69" wheel "Cython<3" "zope.event==4.5.0" "zope.interface==5.5.2" \
+RUN pip install "pip<24.1" "setuptools==68.2.2" wheel "Cython<3" "zope.event==4.5.0" "zope.interface==5.5.2" \
     && PIP_CONSTRAINT=/tmp/build-constraints.txt pip install --no-build-isolation -r requirements.txt \
-    && pip install --force-reinstall "zope.event==4.5.0" "zope.interface==5.5.2" \
+    && pip install --no-deps --force-reinstall "setuptools==68.2.2" "zope.event==4.5.0" "zope.interface==5.5.2" \
     && python -c "import pkg_resources; pkg_resources.require('zope.interface'); import zope.interface"
 
 COPY . /opt/odoo
