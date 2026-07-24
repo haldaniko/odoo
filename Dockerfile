@@ -50,7 +50,8 @@ WORKDIR /opt/odoo
 COPY requirements.txt ./
 COPY docker/build-constraints.txt /tmp/build-constraints.txt
 RUN pip install "pip<24.1" "setuptools<69" wheel "Cython<3" \
-    && PIP_CONSTRAINT=/tmp/build-constraints.txt pip install --no-build-isolation -r requirements.txt
+    && PIP_CONSTRAINT=/tmp/build-constraints.txt pip install --no-build-isolation -r requirements.txt \
+    && pip install zope.event zope.interface
 
 COPY . /opt/odoo
 COPY docker/odoo.conf /etc/odoo/odoo.conf
