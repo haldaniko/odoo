@@ -30,7 +30,7 @@ services:
       DB_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
       ODOO_RC: /etc/odoo/odoo.prod.conf
     ports:
-      - "${ODOO_HTTP_PORT:-8069}:8069"
+      - "${ODOO_HTTP_PORT:-8074}:8069"
       - "${ODOO_LONGPOLLING_PORT:-8072}:8072"
     volumes:
       - odoo-prod-web-data:/var/lib/odoo
