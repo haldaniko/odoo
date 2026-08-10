@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_ai_contact_import" model="ir.actions.client">
+        <field name="name">Import Contacts</field>
+        <field name="tag">ai_contact_import</field>
+    </record>
+
+    <menuitem id="menu_ai_contact_import"
+        name="Import"
+        action="action_ai_contact_import"
+        parent="contacts.menu_contacts"
+        sequence="3"/>
+</odoo>
+

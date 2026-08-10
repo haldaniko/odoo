@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ai_contact_import.Main">
+        <div class="o_ai_contact_import">
+            <div class="o_ai_contact_import_toolbar">
+                <input class="o_ai_contact_file" type="file" accept=".csv,.xls,.xlsx,.ods"/>
+                <button type="button" class="btn btn-primary o_ai_contact_analyze">Import</button>
+                <button type="button" class="btn btn-secondary o_ai_contact_start" disabled="disabled">Start processing</button>
+                <button type="button" class="btn btn-link o_ai_contact_reset">Reset</button>
+            </div>
+            <div class="o_ai_contact_status"/>
+        </div>
+    </t>
+
+    <t t-name="ai_contact_import.Status">
+        <div t-attf-class="o_ai_contact_panel o_ai_contact_#{state.status}">
+            <t t-if="state.message">
+                <div class="o_ai_contact_message"><t t-esc="state.message"/></div>
+            </t>
+            <t t-if="state.status === 'idle'">
+                <div class="text-muted">Choose a CSV, XLS, XLSX, or ODS contact database file.</div>
+            </t>
+            <t t-if="state.status === 'ready'">
+                <div class="text-muted">Ready to analyze columns.</div>
+            </t>
+            <t t-if="state.status === 'analyzing'">
+                <div class="o_ai_contact_spinner">Analyzing...</div>
+            </t>
+            <t t-if="session.id">
+                <div class="o_ai_contact_progress_block">
+                    <div class="o_ai_contact_progress_meta">
+                        <span><t t-esc="session.processed || 0"/> / <t t-esc="session.total || 0"/> rows processed</span>
+                        <span><t t-esc="session.remaining || 0"/> remaining</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" t-attf-style="width: #{percent}%;" t-att-aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
+                            <t t-esc="percent"/>%
+                        </div>
+                    </div>
+                </div>
+                <div class="o_ai_contact_summary">
+                    <div>
+                        <strong>Mapped fields</strong>
+                        <ul>
+                            <t t-foreach="session.mapped || []" t-as="item">
+                                <li><t t-esc="item.column"/> -> <code><t t-esc="item.field"/></code></li>
+                            </t>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Saved to internal notes</strong>
+                        <ul>
+                            <t t-foreach="session.extra || []" t-as="column">
+                                <li><t t-esc="column"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </div>
+                <t t-if="session.errors">
+                    <div class="alert alert-warning">
+                        <strong><t t-esc="session.errors"/> rows failed.</strong>
+                        <ul>
+                            <t t-foreach="session.errorDetails || []" t-as="error">
+                                <li>Row <t t-esc="error.row"/>: <t t-esc="error.error"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+                <t t-if="state.status === 'done'">
+                    <div class="alert alert-success">
+                        Created <t t-esc="session.created"/> contacts.
+                    </div>
+                </t>
+            </t>
+            <t t-if="state.status === 'error'">
+                <div class="alert alert-danger"><t t-esc="state.message"/></div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="ai_contact_import.MenuItem" owl="1">
+        <DropdownItem class="'o_ai_contact_import_menu'" onSelected.bind="importContacts">
+            AI Import contacts
+        </DropdownItem>
+    </t>
+</templates>
+
