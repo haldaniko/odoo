@@ -1,0 +1,61 @@
+.o_ai_contact_import {
+    max-width: 980px;
+    padding: 24px;
+}
+
+.o_ai_contact_import_toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.o_ai_contact_file {
+    max-width: 420px;
+}
+
+.o_ai_contact_panel {
+    border: 1px solid #d8dadd;
+    border-radius: 6px;
+    padding: 18px;
+    background: #fff;
+}
+
+.o_ai_contact_message {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.o_ai_contact_progress_block {
+    margin: 12px 0 20px;
+}
+
+.o_ai_contact_progress_meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 6px;
+}
+
+.o_ai_contact_summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+}
+
+.o_ai_contact_summary ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+
+@media (max-width: 720px) {
+    .o_ai_contact_import {
+        padding: 16px;
+    }
+
+    .o_ai_contact_summary {
+        grid-template-columns: 1fr;
+    }
+}
+
